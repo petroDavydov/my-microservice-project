@@ -1,2 +1,4 @@
-# my-microservice-project
-my-microservice-project by conspect &amp; homework
+# Мій власний мікросервісний проєкт  
+
+Це репозиторій для навчального проєкту в межах курсу "DevOps CI/CD".  
+
