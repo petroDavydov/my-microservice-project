@@ -19,6 +19,18 @@ if ! command -v python3 &>/dev/null; then
     fi
 else
     echo "Python is already installed: $(python3 --version)"
+    # Перевіряємо версії
+    python_version=$(python3 -V | awk '{print $2}')
+    major=$(echo $python_version | cut -d. -f1)
+    minor=$(echo $python_version | cut -d. -f2)
+    if [ "$major" -lt 3 ] || { [ "$major" -eq 3 ] && [ "$minor" -lt 9 ]; }; then
+        echo "Python version is less than 3.9. Please update Python to version 3.9 or higher."
+        exit 1
+    else
+        echo "Python version >=3.9"
+    fi
+fi
+
 
 
 echo "= Check if/and Install pip ="
@@ -48,29 +60,129 @@ else
 fi
 
 
+
+echo "= Check if/and venv installed ="
+        # ЧИ існує venv
+if ! python3 -m venv --help &>/dev/null; then
+    echo "venv module is not installed. Installing python3-venv..."
+    if command -v apt-get &>/dev/null; then
+        sudo apt-get update
+        sudo apt-get install -y python3-venv 
+    elif command -v dnf &>/dev/null; then
+        sudo dnf install -y python3-venv
+    elif command -v yum &>/dev/null; then
+        sudo yum install -y python3-venv 
+    else
+        echo "Unsupported package manager. Please install python3-venv manually."
+        exit 1
+    fi
+else
+    echo "Venv is already available in Python"
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 echo "Check if/and Django installed"
 
 if ! python3 -c "import django" &>/dev/null; then
-    echo "Django is not installed. Installing Django..."
-    pip3 install Django --break-system-packages
+    echo "Django is not installed. Creating Virtual Environment ->  Installing Django..."
+    python3 -m venv django_venv
+    source django_venv/bin/activate
+    pip install Django
+    deactivate
 else
-    echo "Django is already installed: $(python3 -m django --version)"
+    echo "Django is already installed use django_venv environment: $(python3 -m django --version)"
 fi
+
+
+########перевірити на Ubuntu  створення django_venv  в любому випадку, або поміняти логіку для сворення venv  навіть якщо Django стоїть глобально##################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 echo "= Check if/and Docker Installed ="
 
 if ! command -v docker &>/dev/null; then
-    sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-      | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt update -y
-    sudo apt install -y docker-ce docker-ce-cli containerd.io
-    sudo usermod -aG docker $USER
+    if command -v apt-get &>/dev/null; then
+        # Залишив для Ubuntu та Debian
+        sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker.gpg
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+        | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        sudo apt update -y
+        sudo apt install -y docker-ce docker-ce-cli containerd.io
+        sudo usermod -aG docker $USER
+    elif command -v yum &>/dev/null; then
+        # Додав для CentOS 7 or <7 та типу RHEL 8-
+        sudo yum install -y yum-utils
+        sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+        sudo yum install -y docker-ce docker-ce-cli containerd.io
+        sudo systemctl enable docker
+        sudo systemctl start docker
+        sudo usermod -aG docker $USER
+    elif command -v dnf &>/dev/null; then
+        # Додав для Fedora та типу RHEL 8+
+        sudo dnf -y install dnf-plugins-core
+        sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+        sudo dnf install -y docker-ce docker-ce-cli containerd.io
+        sudo systemctl enable docker
+        sudo systemctl start docker
+        sudo usermod -aG docker $USER
+    else 
+        echo "Unsupported package manager. Please install Docker manually."
+        exit 1
+    fi
 else
     echo "Docker is already installed: $(docker --version)"
 fi
+
 
 
 echo "= Check if/and Docker-Compose installed ="
@@ -84,4 +196,4 @@ else
 fi
 
 
-echo "= Your tools INSTALLED!"
+echo "= Your tools INSTALLED! ="
