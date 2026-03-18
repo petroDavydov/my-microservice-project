@@ -82,68 +82,23 @@ fi
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 echo "Check if/and Django installed"
 
-if ! python3 -c "import django" &>/dev/null; then
-    echo "Django is not installed. Creating Virtual Environment ->  Installing Django..."
+if [ ! -d "django_venv" ]; then
+    echo "Now we create Environment for Django named django_venv..."
     python3 -m venv django_venv
-    source django_venv/bin/activate
-    pip install Django
-    deactivate
+fi
+
+source django_venv/bin/activate
+
+if ! python3 -c "import django" &>/dev/null; then
+    echo "Django is not installed inside django_venv -> Installing Django inside django_venv..."
+    pip install Django    
 else
     echo "Django is already installed use django_venv environment: $(python3 -m django --version)"
 fi
 
-
-########перевірити на Ubuntu  створення django_venv  в любому випадку, або поміняти логіку для сворення venv  навіть якщо Django стоїть глобально##################ПОДУМАТИ і ВИРІШИТИ!!!!!#####
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+deactivate
 
 
 
@@ -160,7 +115,7 @@ if ! command -v docker &>/dev/null; then
         sudo apt install -y docker-ce docker-ce-cli containerd.io
         sudo usermod -aG docker $USER
     elif command -v yum &>/dev/null; then
-        # Додав для CentOS 7 or <7 та типу RHEL 8-
+        # Додав для CentOS 7 or < 7 та типу RHEL 8-
         sudo yum install -y yum-utils
         sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
         sudo yum install -y docker-ce docker-ce-cli containerd.io
