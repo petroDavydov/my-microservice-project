@@ -5,13 +5,12 @@ services:
     build:
       context: ./django 
     container_name: django_app 
-    command: python manage.py runserver 0.0.0.0:8000 
+    command: gunicorn goit --bind 0.0.0.0:8000
     volumes:
       - ./django:/app 
+      - static_content:/app/static
     env_file:
-      - .env 
-    ports:
-      - "8000:8000" 
+      - .env    
     depends_on:
       - db 
 
@@ -22,8 +21,7 @@ services:
       - .env 
     volumes:
       - postgres_data:/var/lib/postgresql/data 
-    ports:
-      - "5432:5432" 
+    
 
   nginx:
     image: nginx:latest 
@@ -31,9 +29,11 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx:/etc/nginx/conf.d 
+      - ./nginx:/etc/nginx/conf.d
+      - static_content:/var/www/static
     depends_on:
       - django 
 
 volumes:
-  postgres_data: 
+  postgres_data:
+  static_content:
