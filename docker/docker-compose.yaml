@@ -1,3 +1,4 @@
+# docker-compose.yml
 # version: '3.9' 
 
 services:
@@ -5,7 +6,7 @@ services:
     build:
       context: ./django 
     container_name: django_app 
-    command: gunicorn goit --bind 0.0.0.0:8000
+    command: gunicorn goit.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./django:/app 
       - static_content:/app/static
@@ -30,7 +31,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - static_content:/var/www/static
+      - static_content:/app/static
     depends_on:
       - django 
 
