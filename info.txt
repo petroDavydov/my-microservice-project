@@ -71,14 +71,15 @@ for file in "${files[@]}"; do
 done  
 ----
 
+--terraform graf | dot -- 
+
+terraform graph | dot -Tpng > graph.png
 
 
 
+--з параметром для повторного підключення бекенду: --
 
-
-
-
-
+terraform init -reconfigure
 
 
 
