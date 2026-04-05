@@ -1,0 +1,1 @@
+# lesson-5/modules/ecr/variables.tf
