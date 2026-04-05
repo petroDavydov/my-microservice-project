@@ -82,6 +82,24 @@ terraform graph | dot -Tpng > graph.png
 terraform init -reconfigure
 
 
+перевірка всіх існуючих ресурсів
+aws resourcegroupstaggingapi get-resources
+
+окремо по реурсах
+
+aws s3 ls
+
+aws dynamodb list-tables
+
+aws ec2 describe-vpcs
+
+aws ec2 describe-subnets
+
+aws ec2 describe-internet-gateways
+
+aws ec2 describe-nat-gateways
+
+aws ecr describe-repositories
 
 
 

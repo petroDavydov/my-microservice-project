@@ -48,3 +48,53 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+# -- continue depends of homework --
+
+# Elastic IP for NAT GW
+
+resource "aws_eip" "nat" {
+  # vpc = true - застарілий, тому прибраний, але для розуміння залишений та закоментований
+  tags = {
+    Name = "${var.vpc_name}-nat-eip"   # Тег для ідентифікації Elastic IP для NAT Gateway
+  }
+
+}
+
+# nat gateway first public subnet
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id   # Використовуємо Elastic IP для NAT Gateway
+  subnet_id     = aws_subnet.public[0].id  # Розміщуємо NAT Gateway в першій публічній підмережі
+
+  tags = {
+    Name = "${var.vpc_name}-nat-gateway"   # Тег для ідентифікації NAT Gateway
+  }
+
+  depends_on = [ aws_internet_gateway.igw ]
+}
+
+# way table fo private subnet
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  tags =  {
+    Name = "${var.vpc_name}-private-rt"
+  }  
+}
+
+# way using NAT GateWay
+
+resource "aws_route" "private_nat" {
+  route_table_id         = aws_route_table.private.id  # Прив'язуємо маршрут до приватної таблиці маршрутів
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.nat.id
+}
+
+# bind private subnet to private table
+
+resource "aws_route_table_association" "private" {
+  count          = length(var.private_subnets)   # Створюємо асоціацію для кожної приватної підмережі
+  subnet_id      = aws_subnet.private[count.index].id  # Прив'язуємо кожну приватну підмережу до таблиці маршрутів
+  route_table_id = aws_route_table.private.id    # Вказуємо таблицю маршрутів для асоціації
+  
+}

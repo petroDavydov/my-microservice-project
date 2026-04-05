@@ -30,15 +30,6 @@ terraform.rc
 tfplan
 
 
-
-
-
-
-
-
-
-
-
 .env
 .env.*
 /docker/*
