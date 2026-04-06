@@ -29,12 +29,33 @@ terraform.rc
 
 tfplan
 
-
+# -------------
 .env
 .env.*
 /docker/*
 /docker
+# ------------
 
+# Kubernetes configuration files
+.kube/
+.kubeconfig
+kubeconfig
+*.kubeconfig
 
+# Helm charts build artifacts
+charts/*.tgz
+
+# Kubernetes manifests overrides
+*.override.yaml
+*.override.yml
+
+# Sensitive Kubernetes secrets
+secrets.yaml
+secrets.yml
+*.secret.yaml
+*.secret.yml
+
+# Temporary kubectl output files
+kubectl-output.log
 
 
