@@ -1,2 +1,2 @@
-# lesson-6/modules/node.tf
+# lesson-6/modules/eks/node.tf
 
