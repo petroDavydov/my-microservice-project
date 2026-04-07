@@ -1,9 +1,9 @@
-# # /lesson-5/backend.tf
+# # /lesson-6/backend.tf
 
 # terraform {
 #   backend "s3" {
 #     bucket         = "petro-davydov-terraform-state-bucket-001001"# Назва S3-бакета
-#     key            = "lesson-5/terraform.tfstate"   # Шлях до файлу стейту
+#     key            = "lesson-6/terraform.tfstate"   # Шлях до файлу стейту
 #     region         = "eu-west-1"                    # Регіон AWS
 #     dynamodb_table = "terraform-locks"              # Назва таблиці DynamoDB
 #     encrypt        = true                           # Шифрування файлу стейту

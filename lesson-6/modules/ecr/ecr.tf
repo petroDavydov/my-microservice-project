@@ -1,4 +1,4 @@
-# lesson-5/modules/ecr/ecr.tf
+# lesson-6/modules/ecr/ecr.tf
 resource "aws_ecr_repository" "this" {
     name                 = var.ecr_name
     
@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "this" {
 
     tags = {
       Name = var.ecr_name
-      Environment = "lesson-5"
+      Environment = "lesson-6"
     }
   
 }

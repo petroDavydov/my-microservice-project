@@ -1,4 +1,4 @@
-# lesson-5/modules/s3-backend/s3.tf
+# lesson-6/modules/s3-backend/s3.tf
 
 # Створюємо S3-бакет
 resource "aws_s3_bucket" "terraform_state" {
@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "terraform_state" {
 
   tags = {
     Name        = "Terraform State Bucket"
-    Environment = "lesson-5"
+    Environment = "lesson-6"
   }
 }
 

@@ -1,4 +1,4 @@
-# lesson-5/main.tf
+# lesson-6/main.tf
 # Підключаємо модуль для S3 та DynamoDB
 module "s3_backend" {
   source = "./modules/s3-backend/"                # Шлях до модуля
@@ -22,6 +22,6 @@ module "vpc" {
 # Підключаємо модуль ECR
 module "ecr" {
   source      = "./modules/ecr"
-  ecr_name    = "lesson-5-ecr"
+  ecr_name    = "lesson-6-ecr"
   scan_on_push = true
 }
