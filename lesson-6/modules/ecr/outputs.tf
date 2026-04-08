@@ -1,4 +1,4 @@
-# lesson-5/modules/ecr/outputs.tf
+# lesson-6/modules/ecr/outputs.tf
 
 output "repository_url" {
     description = "URL of the ECR repository for Docker images"
