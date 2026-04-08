@@ -25,3 +25,14 @@ module "ecr" {
   ecr_name    = "lesson-6-ecr"
   scan_on_push = true
 }
+
+# Додаємо eks відповідно до теми №6 K8s
+module "eks" {
+  source          = "./modules/eks"          
+  cluster_name    = "eks-cluster-lesson-6"        # Назва кластера
+  subnet_ids      = module.vpc.public_subnets     # ID підмереж
+  instance_type   = "t2.micro"                    # Тип інстансів
+  desired_size    = 1                             # Бажана кількість нодів
+  max_size        = 2                             # Максимальна кількість нодів
+  min_size        = 1                             # Мінімальна кількість нодів
+}
