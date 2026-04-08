@@ -1,5 +1,5 @@
 # lesson-6/modules/ecr/ecr.tf
-resource "aws_ecr_repository" "this" {
+resource "aws_ecr_repository" "my_ecr_repo_k8s" {
     name                 = var.ecr_name
     
     image_scanning_configuration {
