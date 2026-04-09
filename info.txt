@@ -104,6 +104,111 @@ aws ecr describe-repositories
 ----------------------------------------------------------
 --kubernetes (k8s) --
 
+1. Доавання кластера до kubeconfig
+aws eks --region <region> update-kubeconfig --name <cluster-name>
+
+2. Перевірка стану кластера:
+kubectl cluster-info
+
+3. Список усіх об'єктів у кластері:
+kubectl get all
+
+4. Зміна простору імен:
+kubectl config set-context --current --namespace=<namespace-name
+
+--Створення ресурсів--
+
+Застосування YAML-маніфесту.
+kubectl apply -f <file-name>.yaml
+
+Перевірка створених ресурс(це приклад ресурсу deployment)
+kubectl get deployment
+
+--Перевірка стану ресурсів--
+
+1. Список подів (Pods):
+kubectl get pod
+
+2. Детальна інформація про певний под
+kubectl describe pod <pod-name>
+
+3. Отримання логів поду:
+kubectl logs <pod-name>
+kubectl logs <pod-name> -c <container-name>
+
+
+--Оновлення та видалення ресурсів--
+
+1. Оновлення ресурсу (наприклад, Deployment).
+kubectl apply -f <file-name>.yaml
+
+2. Видалення ресурсу:
+kubectl delete -f <file-name>.yaml
+kubectl delete pod <pod-name>
+
+
+--Діагностика помилок--
+
+1. Перевірка стану вузлів (Nodes):
+kubectl get nodes
+
+2. Детальна діагностика.
+kubectl describe pod <pod-name>
+
+3. Моніторинг ресурсів.
+kubectl get pods --watch
+
+
+--Робота з просторами імен (Namespaces)--
+
+1. Перегляд усіх просторів імен:
+kubectl get namespaces
+
+2. Створення нового простору імен:
+kubectl create namespace <namespace-name>
+
+3. Видалення простору імен:
+kubectl delete namespace <namespace-name>
+
+
+--Корисні скорочення--
+
+1. Щоб отримати відповідь у форматі YAML чи JSON:
+kubectl get pods -o yaml
+
+2. Для швидкої перевірки всіх ресурсів у кластері
+kubectl get all --all-namespaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
