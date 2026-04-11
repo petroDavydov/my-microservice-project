@@ -9,7 +9,6 @@ output "dynamodb_table_name" {
   value       = module.s3_backend.dynamodb_table_name
 }
 
-# continue depends of HomeWork
 
 output "vpc_id" {
   value = module.vpc.vpc_id
