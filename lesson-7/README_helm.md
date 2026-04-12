@@ -1,2 +1,2 @@
-# Work 6: Kubernetes (K8s)
+# Work 6: Helm (K8s)
 
