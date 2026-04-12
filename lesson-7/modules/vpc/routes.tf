@@ -1,4 +1,4 @@
-# lesson-6/modules/vpc/routes.tf
+# lesson-7/modules/vpc/routes.tf
 
  # Створюємо маршрутну таблицю для публічних підмереж
 resource "aws_route_table" "public" {

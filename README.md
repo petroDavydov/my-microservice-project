@@ -2,4 +2,4 @@
 
 ## Kubernetes (K8s)
 
-##### Всі данні та пояснення відносно роботи №6 у файлі README_kubernetes.md у гілці lesson-6, папці lesson-6
+##### Всі данні та пояснення відносно роботи №7 у файлі README_helm.md у гілці lesson-7, папці lesson-7

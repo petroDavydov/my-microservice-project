@@ -1,4 +1,4 @@
-# lesson-6/modules/eks/node.tf
+# lesson-7/modules/eks/node.tf
 
 # IAM-роль для EC2-вузлів (Worker Nodes)
 resource "aws_iam_role" "nodes" {
