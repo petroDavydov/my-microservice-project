@@ -8,6 +8,7 @@ resource "aws_iam_role" "eks" {
 # Політика, яка дозволяє сервісу EKS «асумувати» цю IAM-роль
 # Дозволяє AssumeRole (використання ролі):"Action"
 # Дозволено для сервісу EKS: "Service"
+# Також додано політику для автоматичного видалення ролей при terraform destroy
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -22,6 +23,13 @@ resource "aws_iam_role" "eks" {
   ]
 }
 POLICY
+
+  force_detach_policies = true
+
+  lifecycle {
+    prevent_destroy = false
+  }
+
 }
 
 # Прив'язка IAM-ролі до політики AmazonEKSClusterPolicy

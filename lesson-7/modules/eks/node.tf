@@ -6,6 +6,7 @@ resource "aws_iam_role" "nodes" {
   name = "${var.cluster_name}-eks-nodes"
 
   # Політика, що дозволяє EC2 асумувати роль
+  # Також додано політику для автоматичного видалення ролей при terraform destroy
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -20,6 +21,13 @@ resource "aws_iam_role" "nodes" {
   ]
 }
 POLICY
+
+force_detach_policies = true
+
+  lifecycle {
+    prevent_destroy = false
+  }
+
 }
 
 # Прив'язка політики для EKS Worker Nodes
