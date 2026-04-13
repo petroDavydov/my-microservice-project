@@ -23,7 +23,9 @@ resource "aws_ecr_repository_policy" "my_ecr_repo_helm" {
             {
                 Sid = "AllowPushPull"
                 Effect = "Allow"
-                Principal = "*"
+                Principal = {
+                    AWS = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+                    }
                 Action = [
                     "ecr:GetDownloadUrlForLayer",
                     "ecr:BatchGetImage",
@@ -31,7 +33,12 @@ resource "aws_ecr_repository_policy" "my_ecr_repo_helm" {
                     "ecr:PutImage",
                     "ecr:InitiateLayerUpload",
                     "ecr:UploadLayerPart",
-                    "ecr:CompleteLayerUpload"
+                    "ecr:CompleteLayerUpload",
+                    "ecr:DescribeRepositories",
+                    "ecr:GetRepositoryPolicy",
+                    "ecr:ListImages",
+                    "ecr:DeleteRepository",
+                    "ecr:SetRepositoryPolicy"
                 ]
             }
         ]
