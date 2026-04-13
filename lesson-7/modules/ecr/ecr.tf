@@ -14,8 +14,8 @@ resource "aws_ecr_repository" "my_ecr_repo_helm" {
 }
 
 
-resource "aws_ecr_repository_policy" "my_ecr_repo_k8s" {
-    repository = aws_ecr_repository.my_ecr_repo_k8s.name
+resource "aws_ecr_repository_policy" "my_ecr_repo_helm" {
+    repository = aws_ecr_repository.my_ecr_repo_helm.name
 
     policy = jsonencode({
         Version = "2012-10-17"
