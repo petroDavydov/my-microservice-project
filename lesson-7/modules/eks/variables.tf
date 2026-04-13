@@ -7,7 +7,7 @@ variable "region" {
 
 variable "cluster_name" {
   description = "Name of the EKS cluster"
-  default     = "example-eks-cluster"
+  default     = "lesson-7-helm"
 }
 
 variable "subnet_ids" {
@@ -17,7 +17,7 @@ variable "subnet_ids" {
 
 variable "node_group_name" {
   description = "Name of the node group"
-  default     = "example-node-group"
+  default     = "lesson-7-node-group"
 }
 
 variable "instance_type" {

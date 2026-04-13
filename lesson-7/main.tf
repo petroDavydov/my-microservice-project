@@ -14,21 +14,21 @@ module "vpc" {
   public_subnets      = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]        # Публічні підмережі
   private_subnets     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]         # Приватні підмережі
   availability_zones  = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]            # Зони доступності
-  vpc_name            = "vpc-lesson-7"              # Ім'я VPC
+  vpc_name            = "vpc-lesson-7-helm"              # Ім'я VPC
 }
 
 
 # Підключаємо модуль ECR
 module "ecr" {
   source      = "./modules/ecr"
-  ecr_name    = "lesson-7-ecr"
+  ecr_name    = "lesson-7-ecr-helm"
   scan_on_push = true
 }
 
 # Додаємо eks 
 module "eks" {
   source          = "./modules/eks"          
-  cluster_name    = "eks-cluster-lesson-7"        # Назва кластера
+  cluster_name    = "eks-cluster-lesson-7-helm"        # Назва кластера
   subnet_ids      = module.vpc.public_subnets     # ID підмереж
   instance_type   = "t2.micro"                    # Тип інстансів
   desired_size    = 1                             # Бажана кількість нодів
