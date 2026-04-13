@@ -58,6 +58,10 @@ resource "aws_eip" "nat" {
     Name = "${var.vpc_name}-nat-eip"   # Тег для ідентифікації Elastic IP для NAT Gateway
   }
 
+  lifecycle {
+    prevent_destroy = false # додано для контролю видалення  ElasticIP
+  }
+
 }
 
 # nat gateway first public subnet
