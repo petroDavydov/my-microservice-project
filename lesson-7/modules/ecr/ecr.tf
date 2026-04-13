@@ -1,4 +1,8 @@
 # lesson-7/modules/ecr/ecr.tf
+
+# data-ресурс для отримання account_id
+data "aws_caller_identity" "current" {}
+
 resource "aws_ecr_repository" "my_ecr_repo_helm" {
     name                 = var.ecr_name
     
