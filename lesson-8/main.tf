@@ -33,7 +33,7 @@ module "eks" {
   instance_type   = "t3.medium"                    # Тип інстансів
   desired_size    = 2                              # Бажана кількість нодів
   max_size        = 4                              # Максимальна кількість нодів
-  min_size        = 2                              # Мінімальна кількість нодів
+  min_size        = 1                              # Мінімальна кількість нодів
 }
 
 # підключаємо Jenkins
@@ -45,6 +45,12 @@ data "aws_eks_cluster" "eks" {
 data "aws_eks_cluster_auth" "eks" {
   name = module.eks.eks_cluster_name
 }
+# ---------------1 варіант --
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.eks.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.eks.token
+}
 
 provider "helm" {
   kubernetes {
@@ -54,13 +60,28 @@ provider "helm" {
   }
 }
 
+# -------------------------2 варіант
 
+# provider "kubernetes" {
+#   config_path = "~/.kube/config"
+# }
+
+# provider "helm" {
+#   kubernetes {
+#     config_path = "~/.kube/config"
+#   }
+# }
+
+# -------------------------
 
 module "jenkins" {
   source       = "./modules/jenkins"
   cluster_name = module.eks.eks_cluster_name
+  # kubeconfig   = data.aws_eks_cluster.eks.endpoint # add fix with amazon AI
+  kubeconfig   = "~/.kube/config" # add myself 
 
   providers = {
-    helm = helm
+    helm       = helm
+    kubernetes = kubernetes
   }
 }
