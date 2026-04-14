@@ -1,5 +1,5 @@
 # DevOps CICD
 
-## Kubernetes (K8s)
+## Jenkins (K8s)
 
-##### Всі данні та пояснення відносно роботи №7 у файлі README_helm.md у гілці lesson-7, папці lesson-7
+##### Всі данні та пояснення відносно роботи №8 у файлі README_jenkins.md у гілці lesson-8, папці lesson-8

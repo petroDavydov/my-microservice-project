@@ -50,6 +50,9 @@ helm upgrade grafana grafana/grafana -n monitoring -f values.yaml - Оновит
 helm uninstall grafana -n monitoring - Видалити реліз
 
 
+-- jenkins --
+
+
 
 
 
