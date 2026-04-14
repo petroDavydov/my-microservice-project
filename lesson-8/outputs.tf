@@ -29,3 +29,14 @@ output "internet_gateway_id" {
 output "repository_url" {
   value = module.ecr.repository_url
 }
+
+#  підключаємо jenkins
+
+output "jenkins_release" {
+  value = module.jenkins.jenkins_release_name
+}
+
+output "jenkins_namespace" {
+  value = module.jenkins.jenkins_namespace
+}
+
