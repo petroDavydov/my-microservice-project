@@ -2,40 +2,6 @@
 
 # Default values for the Jenkins Helm chart
 
-controller:
-  admin:
-    username: admin
-    password: admin123
-
-  serviceType: LoadBalancer
-  servicePort: 80
-  service:
-    port: 80
-    targetPort: 8080
-
-  resources:
-    limits:
-      cpu: "500m"
-      memory: "1Gi"
-    requests:
-      cpu: "250m"
-      memory: "512Mi"
-
-  persistentVolume:
-    enabled: true
-    storageClass: ""
-    size: 10Gi
-
-  installPlugins:
-    - kubernetes:latest
-    - workflow-aggregator:latest
-    - git:latest
-    - configuration-as-code:latest
-    - credentials-binding:latest
-    - github:latest
-
-# ---------------- 2 step CI --
-
 # controller:
 #   admin:
 #     username: admin
@@ -57,7 +23,7 @@ controller:
 
 #   persistentVolume:
 #     enabled: true
-#     storageClass: "ebs-sc"
+#     storageClass: ""
 #     size: 10Gi
 
 #   installPlugins:
@@ -67,63 +33,97 @@ controller:
 #     - configuration-as-code:latest
 #     - credentials-binding:latest
 #     - github:latest
-#     - docker-plugin:latest
-#     - docker-workflow:latest
-#     - job-dsl:latest
 
-#   serviceAccount:
-#      name: jenkins-sa
-#      create: false
+# ---------------- 2 step CI --
 
-#   JCasC:
-#     configScripts:
-#       credentials: |
-#         credentials:
-#           system:
-#             domainCredentials:
-#               - credentials:
-#                   - usernamePassword:
-#                       scope: GLOBAL
-#                       id: github-token
-#                       username: USER NAME
-#                       password: <must be password>
-#                       description: GitHub PAT
-#       seed-job: |
-#         jobs:
-#           - script: >
-#               job('seed-job') {
-#                 description('Job to generate pipeline for Django project')
-#                 scm {
-#                   git {
-#                     remote {
-#                       url('<https://github.com/AndriyDmitriv/infra.git>')
-#                       credentials('github-token')
-#                     }
-#                     branches('*/main')
-#                   }
-#                 }
-#                 steps {
-#                   dsl {
-#                     text('''
-#                       pipelineJob("goit-django-docker") {
-#                         definition {
-#                           cpsScm {
-#                             scm {
-#                               git {
-#                                 remote {
-#                                   url("<https://github.com/AndriyDmitriv/infra.git>")
-#                                   credentials("github-token")
-#                                 }
-#                                 branches("*/main")
-#                               }
-#                             }
-#                           }
-#                         }
-#                       }
-#                     ''')
-#                   }
-#                 }
-#               }
+controller:
+  admin:
+    username: admin
+    password: admin123
+
+  serviceType: LoadBalancer
+  servicePort: 80
+  service:
+    port: 80
+    targetPort: 8080
+
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+
+  persistentVolume:
+    enabled: true
+    storageClass: "ebs-sc"
+    size: 10Gi
+
+  installPlugins:
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - git:latest
+    - configuration-as-code:latest
+    - credentials-binding:latest
+    - github:latest
+    - docker-plugin:latest
+    - docker-workflow:latest
+    - job-dsl:latest
+
+  serviceAccount:
+     name: jenkins-sa
+     create: false
+
+  JCasC:
+    configScripts:
+      credentials: |
+        credentials:
+          system:
+            domainCredentials:
+              - credentials:
+                  - usernamePassword:
+                      scope: GLOBAL
+                      id: github-token
+                      username: petroDavydov
+                      password: 
+                      description: GitHub PAT
+      seed-job: |
+        jobs:
+          - script: >
+              job('seed-job') {
+                description('Job to generate pipeline for Django project')
+                scm {
+                  git {
+                    remote {
+                      url('https://github.com/petroDavydov/my-microservice-project.git')
+                      credentials('github-token')
+                    }
+                    branches('*/lesson-4')
+                  }
+                }
+                steps {
+                  dsl {
+                    text('''
+                      pipelineJob("goit-django-docker") {
+                        definition {
+                          cpsScm {
+                            scm {
+                              git {
+                                remote {
+                                  url("https://github.com/petroDavydov/my-microservice-project.git")
+                                  credentials("github-token")
+                                }
+                                branches("*/lesson-4")
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ''')
+                  }
+                }
+              }
 
 
 
