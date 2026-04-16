@@ -32,7 +32,7 @@ resource "kubernetes_storage_class_v1" "ebs_sc" {
   }
 }
 
-resource "kubernetes_service_account" "jenkins_sa" {
+resource "kubernetes_service_account_v1" "jenkins_sa" { # було: kubernetes_service_account, додано _v1 - рекомендація після terraform validate
   metadata {
     name      = "jenkins-sa"
     namespace = "jenkins"

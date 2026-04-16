@@ -65,7 +65,7 @@ resource "aws_eip" "nat" {
 
 # nat gateway first public subnet
 resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat.alocation_id   # Використовуємо Elastic IP для NAT Gateway(було aws_eip.nat.id)
+  allocation_id = aws_eip.nat.allocation_id   # Використовуємо Elastic IP для NAT Gateway(було aws_eip.nat.id)
   
   subnet_id     = aws_subnet.public[0].id  # Розміщуємо NAT Gateway в першій публічній підмережі
 
