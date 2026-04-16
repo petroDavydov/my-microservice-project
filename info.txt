@@ -227,6 +227,7 @@ helm install cert-manager jetstack/cert-manager --namespace cert-manager --creat
 
 -- jenkins --
 
+terraform destroy $(terraform state list | grep jenkins | sed 's/^/-target=/')
 
 
 
