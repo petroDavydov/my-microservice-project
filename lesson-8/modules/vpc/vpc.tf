@@ -63,6 +63,19 @@ resource "aws_eip" "nat" {
 
 }
 
+# --- додано ресурс для видалення через terraform destroy
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public[0].id
+
+  tags = {
+    Name = "${var.vpc_name}-nat-gateway-jenkins"
+  }
+
+  depends_on = [aws_internet_gateway.igw]
+}
+# ---
+
 # nat gateway first public subnet
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat.allocation_id   # Використовуємо Elastic IP для NAT Gateway(було aws_eip.nat.id)
