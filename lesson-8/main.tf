@@ -86,4 +86,8 @@ module "jenkins" {
     helm       = helm
     kubernetes = kubernetes
   }
+
+  # Додано по рекомендації ШІ
+  oidc_provider_url = module.eks.oidc_provider_url
+  oidc_provider_arn = module.eks.oidc_provider_arn
 }
