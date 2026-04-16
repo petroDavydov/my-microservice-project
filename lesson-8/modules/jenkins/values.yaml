@@ -38,8 +38,8 @@
 
 controller:
   admin:
-    username: admin
-    password: admin123
+    username: # your username(admin)
+    password: # your password(if not default, then yours)
 
   serviceType: LoadBalancer
   servicePort: 80
@@ -85,8 +85,8 @@ controller:
                   - usernamePassword:
                       scope: GLOBAL
                       id: github-token
-                      username: petroDavydov
-                      password: 
+                      username: <enter your Name on githab>
+                      password: <enter your PAT or password>
                       description: GitHub PAT
       seed-job: |
         jobs:
