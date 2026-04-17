@@ -1,4 +1,5 @@
-# Work 8: Jenkins
+<!-- lesson-8-9/README_jenkins_argo_cd.md -->
+# Work 8-9: Jenkins and Argo CD
 
 ### СТРУКТУРА ПРОЕКТУ
 ##### *декотрі файли з'являються після розгортання terraform та виконання певних команд*
