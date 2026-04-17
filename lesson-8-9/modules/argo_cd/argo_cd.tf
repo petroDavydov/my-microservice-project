@@ -16,7 +16,7 @@ resource "helm_release" "argo_cd" {
 
 resource "helm_release" "argo_apps" {
   name       = "${var.name}-apps"
-  chart      = "${path.module}/charts/argo-apps"
+  chart      = "${path.module}/charts"
   namespace  = var.namespace
   create_namespace = false
 
