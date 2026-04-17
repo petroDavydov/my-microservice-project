@@ -76,18 +76,18 @@ resource "aws_nat_gateway" "nat" {
 }
 # ---
 
-# nat gateway first public subnet
-resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat.allocation_id   # Використовуємо Elastic IP для NAT Gateway(було aws_eip.nat.id)
+# # nat gateway first public subnet
+# resource "aws_nat_gateway" "nat" {
+#   allocation_id = aws_eip.nat.allocation_id   # Використовуємо Elastic IP для NAT Gateway(було aws_eip.nat.id)
   
-  subnet_id     = aws_subnet.public[0].id  # Розміщуємо NAT Gateway в першій публічній підмережі
+#   subnet_id     = aws_subnet.public[0].id  # Розміщуємо NAT Gateway в першій публічній підмережі
 
-  tags = {
-    Name = "${var.vpc_name}-nat-gateway-jenkins-argo-cd"   # Тег для ідентифікації NAT Gateway
-  }
+#   tags = {
+#     Name = "${var.vpc_name}-nat-gateway-jenkins-argo-cd"   # Тег для ідентифікації NAT Gateway
+#   }
 
-  depends_on = [ aws_internet_gateway.igw ]
-}
+#   depends_on = [ aws_internet_gateway.igw ]
+# }
 
 # way table fo private subnet
 

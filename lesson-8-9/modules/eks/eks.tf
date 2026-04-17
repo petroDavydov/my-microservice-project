@@ -64,8 +64,7 @@ resource "aws_eks_cluster" "eks" {
 
 # Залежність від IAM-політики для ролі EKS
   depends_on = [
-    aws_iam_role_policy_attachment.eks,
-    aws_eks_node_group.general]
+    aws_iam_role_policy_attachment.eks] # aws_eks_node_group - це прибрано для уникненння циклічності
 
     # Дозволяє видаляти при terraform destroy
   lifecycle {
