@@ -24,9 +24,12 @@ spec:
   }
 
   environment {
-    ECR_REGISTRY = "768405431530.dkr.ecr.eu-west-1.amazonaws.com/lesson-8-ecr-jenkins"
-    IMAGE_NAME   = "app"
-    IMAGE_TAG    = "latest"
+    ECR_REGISTRY = "768405431530.dkr.ecr.eu-west-1.amazonaws.com/lesson-8-9-ecr-jenkins"
+    IMAGE_NAME   = "lesson-8-9-ecr"
+    IMAGE_TAG    = "v1.0.${BUILD_NUMBER}"
+
+    COMMIT_EMAIL = "jenkins@localhost"
+    COMMIT_NAME  = "Jenkins CI"
   }
 
   stages {
@@ -50,18 +53,25 @@ spec:
         container('git') {
           withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PAT')]) {
             sh '''
-              git clone <https://$GIT_USERNAME:$GIT_PAT@github.com/AndriyDmitriv/goit-devops.git>
-              cd goit-devops/django-chart
+              git clone "https://$GIT_USERNAME:$GIT_PAT@github.com/petroDavydov/my-microservice-project.git"
+              
+              git checkout lesson-4
+              
+              cd docker
 
-              sed -i "s/tag: .*/tag: $IMAGE_TAG/" values.yaml
+
+              sed -i "s/tag: .*/tag: $IMAGE_TAG/" charts/django-chart/values.yaml
 
               git config user.email "$COMMIT_EMAIL"
               git config user.name "$COMMIT_NAME"
 
-              git add values.yaml
+              git add charts/django-chart/values.yaml
               git commit -m "Update image tag to $IMAGE_TAG"
-              git push origin main
+              git push origin lesson-4
             '''
           }
+        }
+      }
+    }
   }
 }
