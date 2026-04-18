@@ -7,7 +7,7 @@ applications:
     source:
       repoURL: https://github.com/petroDavydov/my-microservice-project.git
       path: charts/django-chart
-      targetRevision: lesson-4
+      targetRevision: lesson-8-9
       helm:
         valueFiles:
           - values.yaml
