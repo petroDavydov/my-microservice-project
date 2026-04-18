@@ -8,5 +8,3 @@ output "jenkins_namespace" {
   value = helm_release.jenkins.namespace
 }
 
-
-
