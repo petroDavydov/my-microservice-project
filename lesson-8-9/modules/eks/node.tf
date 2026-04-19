@@ -3,7 +3,7 @@
 # IAM-роль для EC2-вузлів (Worker Nodes)
 resource "aws_iam_role" "nodes" {
   # Ім'я ролі для вузлів
-  name = "${var.cluster_name}-eks-nodes-jenkins-argo-cd"
+  name = "${var.cluster_name}-eks-nodes"
 
   # Політика, що дозволяє EC2 асумувати роль
   # Також додано політику для автоматичного видалення ролей при terraform destroy
