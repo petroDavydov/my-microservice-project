@@ -37,6 +37,6 @@ variable "max_size" {
 
 variable "min_size" {
   description = "Minimum number of worker nodes"
-  default     = 2
+  default     = 1
 }
 

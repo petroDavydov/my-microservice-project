@@ -3,7 +3,7 @@
 # IAM-роль для EKS-кластера
 resource "aws_iam_role" "eks" {
 # Ім'я IAM-ролі для кластера EKS
-  name = "${var.cluster_name}-eks-cluster-jenkins-argo-cd"
+  name = "${var.cluster_name}-eks-role"
 
 # Політика, яка дозволяє сервісу EKS «асумувати» цю IAM-роль
 # Дозволяє AssumeRole (використання ролі):"Action"
