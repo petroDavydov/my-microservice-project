@@ -1,4 +1,4 @@
-// lesson-8-9/charts/Jenkinsfile
+// lesson-8-9/Jenkinsfile
 
 pipeline {
   agent {
@@ -47,6 +47,7 @@ spec:
               --context `pwd` \\
               --dockerfile `pwd`/docker/django/Dockerfile \\
               --destination=$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG \\
+              --destination=$ECR_REGISTRY/$IMAGE_NAME:latest \\
               --cache=true \\
               --insecure \\
               --skip-tls-verify
