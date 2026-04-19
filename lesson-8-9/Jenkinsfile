@@ -44,8 +44,8 @@ spec:
         container('kaniko') {
           sh '''
             /kaniko/executor \\
-              --context `pwd` \\
-              --dockerfile `pwd`/docker/django/Dockerfile \\
+              --context `pwd`/docker/django \\
+              --dockerfile Dockerfile \\
               --destination=$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG \\
               --destination=$ECR_REGISTRY/$IMAGE_NAME:latest \\
               --cache=true \\
@@ -64,10 +64,7 @@ spec:
               cd my-microservice-project
               git checkout lesson-8-9
 
-              cd lesson-8-9/charts/
-              
-
-
+              cd lesson-8-9/charts
               sed -i "s/tag: .*/tag: $IMAGE_TAG/" django-app/values.yaml
 
               git config user.email "$COMMIT_EMAIL"
