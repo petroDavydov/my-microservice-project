@@ -2,7 +2,7 @@
 
 image:
   repository: 768405431530.dkr.ecr.eu-west-1.amazonaws.com/lesson-8-9-ecr-jenkins-argo-cd
-  tag: latest
+  tag: v1.0.1
   pullPolicy: IfNotPresent
 
 service:
