@@ -1,4 +1,4 @@
-# lesson-8-9/charts/django-chart/templates/configmap.yaml
+# lesson-8-9/charts/django-app/templates/configmap.yaml
 
 apiVersion: v1
 kind: ConfigMap

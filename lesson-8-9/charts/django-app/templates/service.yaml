@@ -1,4 +1,4 @@
-# lesson-8-9/charts/django-chart/templates/service.yaml
+# lesson-8-9/charts/django-app/templates/service.yaml
 
 apiVersion: v1
 kind: Service

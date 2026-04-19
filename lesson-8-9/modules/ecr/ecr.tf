@@ -42,7 +42,7 @@ resource "aws_ecr_repository_policy" "my_ecr_repo_jenkins_argo_cd" {
                     "ecr:GetRepositoryPolicy",
                     "ecr:ListImages",
                     "ecr:DeleteRepository",
-                    "ecr:SetRepositoryPolicy"
+                    # "ecr:SetRepositoryPolicy"
                 ]
             }
         ]

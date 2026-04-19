@@ -1,4 +1,4 @@
-# lesson-8-9/charts/django-chart/templates/hpa.yaml
+# lesson-8-9/charts/django-app/templates/hpa.yaml
 
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler

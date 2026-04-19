@@ -2,7 +2,7 @@
 
 applications:
   - name: django-app
-    namespace: argocd
+    namespace: default
     project: default
     source:
       repoURL: https://github.com/petroDavydov/my-microservice-project.git

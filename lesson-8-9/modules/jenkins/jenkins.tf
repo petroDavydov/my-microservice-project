@@ -40,9 +40,9 @@ resource "kubernetes_service_account_v1" "jenkins_sa" { # було: kubernetes_s
       "eks.amazonaws.com/role-arn" = aws_iam_role.jenkins_kaniko_role.arn
     }
   }
-  # depends_on = [
-  #   helm_release.jenkins
-  # ]
+  depends_on = [
+    helm_release.jenkins
+  ]
 }
 
 resource "aws_iam_role" "jenkins_kaniko_role" {
@@ -83,8 +83,7 @@ resource "aws_iam_role_policy" "jenkins_ecr_policy" {
           "ecr:InitiateLayerUpload",
           "ecr:UploadLayerPart",
           "ecr:CompleteLayerUpload",
-          "ecr:DescribeRepositories",
-          "ecr:GetAuthorizationToken"
+          "ecr:DescribeRepositories"
         ],
         Resource = "*"
       }
