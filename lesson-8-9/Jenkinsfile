@@ -1,101 +1,84 @@
-// lesson-8-9/Jenkinsfile
+// lesson-8-9/charts/Jenkinsfile
 
 pipeline {
   agent {
     kubernetes {
-      label 'kaniko'
       yaml """
 apiVersion: v1
 kind: Pod
+metadata:
+  labels:
+    some-label: jenkins-kaniko
 spec:
+  serviceAccountName: jenkins-sa
   containers:
-  - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug
-    command:
-    - /busybox/cat
-    tty: true
-    volumeMounts:
-    - name: workspace-volume
-      mountPath: /workspace
-  - name: git
-    image: alpine/git:latest
-    command:
-    - cat
-    tty: true
-    env:
-    - name: GITHUB_TOKEN
-      valueFrom:
-        secretKeyRef:
-          name: github-token
-          key: token
-          optional: true
-  volumes:
-  - name: workspace-volume
-    emptyDir: {}
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:v1.16.0-debug
+      imagePullPolicy: Always
+      command:
+        - sleep
+      args:
+        - 99d
+    - name: git
+      image: bitnami/git:latest
+      command:
+        - sleep
+      args:
+        - 99d
 """
     }
   }
 
   environment {
-    AWS_REGION      = 'eu-west-1'
-    ECR_REPO        = '768405431530.dkr.ecr.eu-west-1.amazonaws.com/lesson-8-9-ecr-jenkins-argo-cd'
-    GITHUB_REPO     = 'https://github.com/petroDavydov/my-microservice-project.git'
-    GITHUB_BRANCH   = 'lesson-8-9'
-    HELM_CHART_PATH = 'lesson-8-9/charts/django-app/values.yaml'
-    IMAGE_TAG       = "${env.BUILD_NUMBER}"
+    ECR_REGISTRY = "768405431530.dkr.ecr.eu-west-1.amazonaws.com/lesson-8-9-ecr-jenkins-argo-cd"
+    IMAGE_NAME   = "lesson-8-9-ecr-jenkins-argo-cd"
+    IMAGE_TAG    = "v1.0.${BUILD_NUMBER}"
+
+    COMMIT_EMAIL = "jenkins@localhost"
+    COMMIT_NAME  = "Jenkins CI"
   }
 
   stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
-    }
-
-    stage('Build & Push to ECR') {
+    stage('Build & Push Docker Image') {
       steps {
         container('kaniko') {
-          sh """
+          sh '''
             /kaniko/executor \\
-              --context=dir://\${WORKSPACE} \\
-              --dockerfile=Dockerfile \\
-              --destination=\${ECR_REPO}:\${IMAGE_TAG} \\
-              --destination=\${ECR_REPO}:latest \\
-              --cache=true
-          """
+              --context `pwd` \\
+              --dockerfile `pwd`/docker/django/Dockerfile \\
+              --destination=$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG \\
+              --cache=true \\
+              --insecure \\
+              --skip-tls-verify
+          '''
         }
       }
     }
-
-    stage('Update Helm values.yaml') {
+    stage('Update Chart Tag in Git') {
       steps {
         container('git') {
-          sh """
-            git config --global user.email "pdci@petro.local"
-            git config --global user.name "Jenkins CI"
+          withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PAT')]) {
+            sh '''
+              git clone "https://$GIT_USERNAME:$GIT_PAT@github.com/petroDavydov/my-microservice-project.git"              
+              cd my-microservice-project
+              git checkout lesson-8-9
 
-            git clone \${GITHUB_REPO} repo
-            cd repo
+              cd lesson-8-9/charts/
+              
 
-            # Update image tag in values.yaml
-            sed -i 's|tag:.*|tag: "\${IMAGE_TAG}"|g' \${HELM_CHART_PATH}
 
-            git add \${HELM_CHART_PATH}
-            git commit -m "ci: update django image tag to \${IMAGE_TAG} [skip ci]"
-            git push origin \${GITHUB_BRANCH}
-          """
+              sed -i "s/tag: .*/tag: $IMAGE_TAG/" django-app/values.yaml
+
+              git config user.email "$COMMIT_EMAIL"
+              git config user.name "$COMMIT_NAME"
+
+              git add django-app/values.yaml
+              git commit -m "Update image tag to $IMAGE_TAG"
+              git push origin lesson-8-9
+            '''
+          }
         }
       }
-    }
-  }
-
-  post {
-    success {
-      echo "Pipeline completed! Image: \${ECR_REPO}:\${IMAGE_TAG}"
-      echo "ArgoCD will auto-sync the new image to the cluster"
-    }
-    failure {
-      echo "Pipeline failed!"
     }
   }
 }
