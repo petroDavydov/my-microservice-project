@@ -1,8 +1,8 @@
-# lesson-8-9/charts/values.yaml
+# lesson-8-9/charts/django-app/values.yaml
 
 image:
   repository: 768405431530.dkr.ecr.eu-west-1.amazonaws.com/lesson-8-9-ecr-jenkins-argo-cd
-  tag: v1.0.1
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:

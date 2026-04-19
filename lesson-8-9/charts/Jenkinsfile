@@ -67,12 +67,12 @@ spec:
               
 
 
-              sed -i "s/tag: .*/tag: $IMAGE_TAG/" django-chart/values.yaml
+              sed -i "s/tag: .*/tag: $IMAGE_TAG/" django-app/values.yaml
 
               git config user.email "$COMMIT_EMAIL"
               git config user.name "$COMMIT_NAME"
 
-              git add django-chart/values.yaml
+              git add django-app/values.yaml
               git commit -m "Update image tag to $IMAGE_TAG"
               git push origin lesson-8-9
             '''
