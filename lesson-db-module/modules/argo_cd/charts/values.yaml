@@ -1,4 +1,4 @@
-# lesson-8-9/modules/argo_cd/charts/values.yaml
+# lesson-db-module/modules/argo_cd/charts/values.yaml
 
 applications:
   - name: django-app

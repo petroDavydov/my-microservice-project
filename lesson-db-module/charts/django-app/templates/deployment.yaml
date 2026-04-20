@@ -1,4 +1,4 @@
-# lesson-8-9/charts/django-app/templates/deployment.yaml
+# lesson-db-module/charts/django-app/templates/deployment.yaml
 
 apiVersion: apps/v1
 kind: Deployment

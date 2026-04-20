@@ -1,4 +1,4 @@
-# lesson-8-9/modules/jenkins/jenkins.tf
+# lesson-db-module/modules/jenkins/jenkins.tf
 
 # resource "helm_release" "jenkins" {
 #   name             = "jenkins"

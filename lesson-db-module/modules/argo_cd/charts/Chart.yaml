@@ -1,4 +1,4 @@
-# lesson-8-9/modules/argo_cd/charts/Chart.yaml
+# lesson-db-module/modules/argo_cd/charts/Chart.yaml
 
 apiVersion: v2
 name: argo-apps

@@ -1,4 +1,4 @@
-# lesson-8-9/main.tf
+# lesson-db-module/main.tf
 # Підключаємо модуль для S3 та DynamoDB
 module "s3_backend" {
   source = "./modules/s3-backend/"                      # Шлях до модуля

@@ -1,4 +1,4 @@
-# lesson-8-9/modules/argo_cd/charts/templates/application.yaml
+# lesson-db-module/modules/argo_cd/charts/templates/application.yaml
 
 {{- range .Values.applications }}
 apiVersion: argoproj.io/v1alpha1

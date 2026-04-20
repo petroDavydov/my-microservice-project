@@ -1,4 +1,4 @@
-// lesson-8-9/Jenkinsfile
+// lesson-db-module/Jenkinsfile
 
 pipeline {
   agent {
@@ -30,12 +30,12 @@ spec:
   }
 
   environment {
-    ECR_REGISTRY = "768405431530.dkr.ecr.eu-west-1.amazonaws.com"
-    IMAGE_NAME   = "lesson-8-9-ecr-jenkins-argo-cd"
+    ECR_REGISTRY = ""
+    IMAGE_NAME   = ""
     IMAGE_TAG    = "v1.0.${BUILD_NUMBER}"
 
-    COMMIT_EMAIL = "jenkins@localhost"
-    COMMIT_NAME  = "Jenkins CI"
+    COMMIT_EMAIL = "dbmodule@localhost"
+    COMMIT_NAME  = "Jenkins CI-db"
   }
 
   stages {
@@ -44,7 +44,7 @@ spec:
         container('kaniko') {
           sh '''
             /kaniko/executor \\
-              --context `pwd`/lesson-8-9 \\
+              --context `pwd`/lesson-db-module \\
               --dockerfile docker/django/Dockerfile \\
               --destination=$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG \\
               --destination=$ECR_REGISTRY/$IMAGE_NAME:latest \\
@@ -62,9 +62,9 @@ spec:
             sh '''
               git clone "https://$GIT_USERNAME:$GIT_PAT@github.com/petroDavydov/my-microservice-project.git"              
               cd my-microservice-project
-              git checkout lesson-8-9
+              git checkout lesson-db-module
 
-              cd lesson-8-9/charts
+              cd lesson-db-module/charts
               sed -i "s/tag: .*/tag: $IMAGE_TAG/" django-app/values.yaml
 
               git config user.email "$COMMIT_EMAIL"
@@ -72,7 +72,7 @@ spec:
 
               git add django-app/values.yaml
               git commit -m "Update image tag to $IMAGE_TAG"
-              git push origin lesson-8-9
+              git push origin lesson-db-module
             '''
           }
         }

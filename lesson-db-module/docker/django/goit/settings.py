@@ -1,4 +1,4 @@
-# lesson-8-9/docker/django/goit/settings.py
+# lesson-db-module/docker/django/goit/settings.py
 """
 Django settings for goit project.
 

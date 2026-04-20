@@ -1,4 +1,4 @@
-# lesson-8-9/modules/jenkins/values.yaml
+# lesson-db-module/modules/jenkins/values.yaml
 
 # Default values for the Jenkins Helm chart
 

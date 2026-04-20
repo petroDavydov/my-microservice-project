@@ -1,4 +1,4 @@
-# lesson-8-9/modules/ecr/ecr.tf
+# lesson-db-module/modules/ecr/ecr.tf
 
 # data-ресурс для отримання account_id
 data "aws_caller_identity" "current" {}

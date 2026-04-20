@@ -1,1 +1,1 @@
-# lesson-8-9/docker/django/goit/__init__/py
+# lesson-db-module/docker/django/goit/__init__/py

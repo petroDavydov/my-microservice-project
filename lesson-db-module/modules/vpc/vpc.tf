@@ -1,4 +1,4 @@
-# lesson-8-9/modules/vpc/vpc.tf
+# lesson-db-module/modules/vpc/vpc.tf
 
 # Створюємо основну VPC
 resource "aws_vpc" "main" {

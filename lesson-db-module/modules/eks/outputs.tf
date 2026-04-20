@@ -1,4 +1,4 @@
-# lesson-8-9/modules/eks/outputs.tf
+# lesson-db-module/modules/eks/outputs.tf
 
 output "eks_cluster_endpoint" {
   description = "EKS API endpoint for connecting to the cluster"

@@ -1,4 +1,4 @@
-# lesson-8-9/modules/jenkins/variables.tf
+# lesson-db-module/modules/jenkins/variables.tf
 
 variable "kubeconfig" {
   description = "Шлях до kubeconfig файлу"

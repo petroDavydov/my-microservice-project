@@ -1,4 +1,4 @@
-# lesson-8-9/modules/s3-backend/s3.tf
+# lesson-db-module/modules/s3-backend/s3.tf
 
 # Створюємо S3-бакет
 resource "aws_s3_bucket" "terraform_state" {

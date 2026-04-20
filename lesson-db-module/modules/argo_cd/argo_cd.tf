@@ -1,4 +1,4 @@
-# lesson-8-9/modules/argo_cd/argo_cd.tf
+# lesson-db-module/modules/argo_cd/argo_cd.tf
 
 resource "helm_release" "argo_cd" {
   name       = var.name

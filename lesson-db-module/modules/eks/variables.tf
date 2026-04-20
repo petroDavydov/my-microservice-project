@@ -1,4 +1,4 @@
-# lesson-8-9/modules/eks/variables.tf
+# lesson-db-module/modules/eks/variables.tf
 
 variable "region" {
   description = "AWS region for deployment"

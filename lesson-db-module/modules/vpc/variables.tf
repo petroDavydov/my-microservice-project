@@ -1,4 +1,4 @@
-# lesson-8-9/modules/vpc/variables.tf
+# lesson-db-module/modules/vpc/variables.tf
 
 variable "vpc_cidr_block" {
   description = "CIDR блок для VPC"

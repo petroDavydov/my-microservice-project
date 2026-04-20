@@ -1,12 +1,12 @@
+# lesson-db-module/docker/docker-compose.yaml
 # version: '3.9' 
-# lesson-8-9/docker/docker-compose.yaml
 
 services:
   django:
     build:
       context: ./django 
     container_name: django_app 
-    command: python manage.py runserver 0.0.0.0:8000 
+    command: python manage.py gunicorn 0.0.0.0:8000 
     volumes:
       - ./django:/app 
     env_file:

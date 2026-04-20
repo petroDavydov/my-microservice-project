@@ -1,4 +1,4 @@
-# lesson-8-9/docker/django/goit/urls.py
+# lesson-db-module/docker/django/goit/urls.py
 """
 URL configuration for goit project.
 

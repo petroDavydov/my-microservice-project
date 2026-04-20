@@ -1,4 +1,4 @@
-# lesson-8-9/modules/jenkins/providers.tf
+# lesson-db-module/modules/jenkins/providers.tf
 
 
 terraform {

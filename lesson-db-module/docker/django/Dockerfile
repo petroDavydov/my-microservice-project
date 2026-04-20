@@ -1,4 +1,4 @@
-# lesson-8-9/docker/django/Dockerfile
+# lesson-db-module/docker/django/Dockerfile
 
 FROM python:3.10-slim
 
@@ -10,7 +10,7 @@ COPY docker/django/requirements.txt .
 # Встановлюємо залежності
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копіюємо увесь код з каталогу lesson-8-9/docker/django
+# Копіюємо увесь код з каталогу lesson-db-module/docker/django
 COPY docker/django/ .
 
 # Налаштовуємо змінні середовища для Postgres
@@ -22,4 +22,4 @@ ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "gunicorn", "0.0.0.0:8000"]

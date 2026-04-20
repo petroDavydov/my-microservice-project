@@ -73,6 +73,8 @@ kubectl-output.log
 # Match any text file
 *.txt
 
+!requirements.txt
+
 # Match only directories named mydir
 mydir/
 

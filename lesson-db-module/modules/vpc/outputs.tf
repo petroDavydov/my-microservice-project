@@ -1,4 +1,4 @@
-# lesson-8-9/modules/vpc/outputs.tf
+# lesson-db-module/modules/vpc/outputs.tf
 
 output "vpc_id" {
   description = "ID створеної VPC"

@@ -1,4 +1,4 @@
-# lesson-8-9/docker/django/goit/wsgi.py
+# lesson-db-module/docker/django/goit/wsgi.py
 """
 WSGI config for goit project.
 

@@ -1,4 +1,4 @@
-# lesson-8-9/modules/argo_cd/providers.tf
+# lesson-db-module/modules/argo_cd/providers.tf
 
 terraform {
   required_providers {

@@ -1,4 +1,4 @@
-# lesson-8-9/modules/eks/aws_ebs_csi_driver.tf
+# lesson-db-module/modules/eks/aws_ebs_csi_driver.tf
 
 # Створюємо IAM OIDC Provider для IRSA
 resource "aws_iam_openid_connect_provider" "oidc" {
