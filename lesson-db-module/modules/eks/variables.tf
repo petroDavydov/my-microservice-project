@@ -7,7 +7,7 @@ variable "region" {
 
 variable "cluster_name" {
   description = "Name of the EKS cluster"
-  default     = "lesson-8-9-jenkins-argo-cd"
+  default     = "lesson-db-module"
 }
 
 variable "subnet_ids" {
@@ -17,7 +17,7 @@ variable "subnet_ids" {
 
 variable "node_group_name" {
   description = "Name of the node group"
-  default     = "lesson-8-node-group-jenkins-argo-cd"
+  default     = "lesson-db-module-node-group"
 }
 
 variable "instance_type" {

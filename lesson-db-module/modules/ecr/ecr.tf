@@ -3,7 +3,7 @@
 # data-ресурс для отримання account_id
 data "aws_caller_identity" "current" {}
 
-resource "aws_ecr_repository" "my_ecr_repo_jenkins_argo_cd" {
+resource "aws_ecr_repository" "my_ecr_repo_lesson_db_module" {
     name                 = var.ecr_name
     
     image_scanning_configuration {
@@ -12,14 +12,14 @@ resource "aws_ecr_repository" "my_ecr_repo_jenkins_argo_cd" {
 
     tags = {
       Name = var.ecr_name
-      Environment = "lesson-8-9-jenkins-argo-cd"
+      Environment = "lesson-db-module"
     }
   
 }
 
 
-resource "aws_ecr_repository_policy" "my_ecr_repo_jenkins_argo_cd" {
-    repository = aws_ecr_repository.my_ecr_repo_jenkins_argo_cd.name
+resource "aws_ecr_repository_policy" "my_ecr_repo_lesson_db_module" {
+    repository = aws_ecr_repository.my_ecr_repo_lesson_db_module.name
 
     policy = jsonencode({
         Version = "2012-10-17"

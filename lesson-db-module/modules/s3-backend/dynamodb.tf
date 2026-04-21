@@ -13,7 +13,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
 
   tags = {     # теги для ідентифікації
     Name        = "Terraform Lock Table"
-    Environment = "lesson-8-9-jenkins-argo-cd"
+    Environment = "lesson-db-module"
   }
 }
 

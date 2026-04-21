@@ -5,7 +5,7 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id  # Прив'язуємо таблицю до нашої VPC
 
   tags = {
-    Name = "${var.vpc_name}-jenkins-argocd-public-rt"  # Тег для таблиці маршрутів
+    Name = "${var.vpc_name}-lesson-db-module-public-rt" # Тег для таблиці маршрутів
   }
 }
 

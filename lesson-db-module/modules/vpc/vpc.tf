@@ -7,7 +7,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true                 # Вмикає можливість використання DNS-імен для ресурсів у VPC
 
   tags = {
-    Name = "${var.vpc_name}-vpc-jenkins-argo-cd"      # Додаємо тег, який включає ім'я VPC
+    Name = "${var.vpc_name}-vpc-lesson-db-module"      # Додаємо тег, який включає ім'я VPC
   }
 }
 
@@ -20,7 +20,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true                         # Автоматично надає публічні IP-адреси інстансам у підмережі
 
   tags = {
-    Name = "${var.vpc_name}-public-subnet-jenkins-argo-cd-${count.index + 1}"  # Тег з нумерацією підмережі
+    Name = "${var.vpc_name}-public-subnet-lesson-db-module-${count.index + 1}"  # Тег з нумерацією підмережі
     # count.index — це індекс циклу "count", який починається з 0.
     # ${count.index + 1} додає +1 до індексу, щоб отримати людське позначення (1, 2, 3 замість 0, 1, 2).
   }
@@ -34,7 +34,7 @@ resource "aws_subnet" "private" {
   availability_zone = var.availability_zones[count.index] # Визначаємо зони доступності для підмереж
 
   tags = {
-    Name = "${var.vpc_name}-private-subnet-jenkins-argo-cd-${count.index + 1}"  # Тег для підмережі з нумерацією
+    Name = "${var.vpc_name}-private-subnet-lesson-db-module-${count.index + 1}"  # Тег для підмережі з нумерацією
     # ${count.index + 1} використовується, щоб нумерація підмереж починалася з 1.
   }
 }
@@ -44,7 +44,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id   # Прив'язуємо Internet Gateway до VPC для виходу в інтернет
 
   tags = {
-    Name = "${var.vpc_name}-igw-jenkins-argo-cd"   # Тег для ідентифікації Internet Gateway
+    Name = "${var.vpc_name}-igw-lesson-db-module"   # Тег для ідентифікації Internet Gateway
   }
 }
 
@@ -54,7 +54,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_eip" "nat" {
   # vpc = true - застарілий, тому прибраний, але для розуміння залишений та закоментований
   tags = {
-    Name = "${var.vpc_name}-nat-eip-jenkins-argo-cd"   # Тег для ідентифікації Elastic IP для NAT Gateway
+    Name = "${var.vpc_name}-nat-eip-lesson-db-module" # Тег для ідентифікації Elastic IP для NAT Gateway
   }
 
   lifecycle {
@@ -69,7 +69,7 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = aws_subnet.public[0].id
 
   tags = {
-    Name = "${var.vpc_name}-nat-gateway-jenkins-argo-cd"
+    Name = "${var.vpc_name}-nat-gateway-lesson-db-module"
   }
 
   depends_on = [aws_internet_gateway.igw]
@@ -96,7 +96,7 @@ resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 
   tags =  {
-    Name = "${var.vpc_name}-private-jenkins-argo-cd-rt"
+    Name = "${var.vpc_name}-private-lesson-db-module-rt"
   }  
 }
 
