@@ -41,3 +41,12 @@ output "jenkins_namespace" {
   value = module.jenkins.jenkins_namespace
 }
 
+# Додаємо для Aurora/RDS
+
+output "aurora_endpoint" {
+  value = module.rds.aurora_endpoint
+}
+
+output "db_name" {
+  value = module.rds.db_name
+}

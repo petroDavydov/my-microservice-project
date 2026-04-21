@@ -16,10 +16,10 @@ COPY docker/django/ .
 # Налаштовуємо змінні середовища для Postgres
 ENV POSTGRES_HOST=${POSTGRES_HOST}
 ENV POSTGRES_PORT=${POSTGRES_PORT}
-ENV POSTGRES_DB=${POSTGRES_NAME}
+ENV POSTGRES_DB=${POSTGRES_DB}
 ENV POSTGRES_USER=${POSTGRES_USER}
 ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "gunicorn", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "gunicorn", "goit.wsgi:application", "--bind", "0.0.0.0:8000"]

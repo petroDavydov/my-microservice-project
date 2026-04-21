@@ -98,7 +98,7 @@ variable "parameter_group_family_aurora" {
 }
 variable "engine_version_cluster" {
   type    = string
-  default = "15.3"
+  default = "15.12"
 }
 variable "parameter_group_family_rds" {
   type    = string

@@ -110,11 +110,11 @@ module "rds" {
 
   name                       = "myapp-db"
   use_aurora                 = true
-  aurora_instance_count      = 2
+  aurora_replica_count      = 2
 
     # --- Aurora-only ---
   engine_cluster             = "aurora-postgresql"
-  engine_version_cluster     = "15.3"
+  engine_version_cluster     = "15.12"
   parameter_group_family_aurora = "aurora-postgresql15"
 
   # --- RDS-only ---
