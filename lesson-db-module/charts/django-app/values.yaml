@@ -10,11 +10,11 @@ service:
   port: 8000
 
 config:
-    POSTGRES_HOST: postgress
+    POSTGRES_HOST: "${module.rds.aurora_endpoints}"
     POSTGRES_PORT: 5432
     POSTGRES_USER: django_user
-    POSTGRES_DB: django_db
-    POSTGRES_PASSWORD: ""
+    POSTGRES_DB: "${module.rds.db_name}"
+    POSTGRES_PASSWORD: "${module.rds.password}"
 
 autoscaler:
   minReplicas: 2
