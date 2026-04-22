@@ -20,6 +20,6 @@ ENV POSTGRES_DB=${POSTGRES_DB}
 ENV POSTGRES_USER=${POSTGRES_USER}
 ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
-EXPOSE 8000
+EXPOSE 8081
 
-CMD ["gunicorn", "goit.wsgi:application", "--bind", "0.0.0.0:8081"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8081"]
