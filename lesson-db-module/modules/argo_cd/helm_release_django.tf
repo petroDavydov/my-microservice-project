@@ -5,23 +5,25 @@ resource "helm_release" "django" {
   chart      = "${path.module}/../charts/django-app"
   namespace  = "default"
 
-  set {
-    name  = "config.POSTGRES_HOST"
-    value = module.rds.aurora_endpoint
-  }
+  set = [
+    {
+      name  = "config.POSTGRES_HOST"
+      value = module.rds.aurora_endpoint
+    },
+    {
+      name  = "config.POSTGRES_DB"
+      value = module.rds.db_name
+    },
+    {
+      name  = "config.POSTGRES_USER"
+      value = module.rds.db_user
+    }
+  ]
 
-  set {
-    name  = "config.POSTGRES_DB"
-    value = module.rds.db_name
-  }
-
-  set {
-    name  = "config.POSTGRES_USER"
-    value = module.rds.db_user
-  }
-
-  set {
-    name  = "config.POSTGRES_PASSWORD"
-    value = module.rds.db_password
-  }
+  set_sensitive = [
+    {
+      name  = "config.POSTGRES_PASSWORD"
+      value = module.rds.db_password
+    }
+  ]
 }
