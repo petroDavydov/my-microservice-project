@@ -30,8 +30,8 @@ spec:
   }
 
   environment {
-    ECR_REGISTRY = ""
-    IMAGE_NAME   = ""
+    ECR_REGISTRY = "768405431530.dkr.ecr.eu-west-1.amazonaws.com"
+    IMAGE_NAME   = "lesson-db-module"
     IMAGE_TAG    = "v1.0.${BUILD_NUMBER}"
 
     COMMIT_EMAIL = "dbmodule@localhost"
