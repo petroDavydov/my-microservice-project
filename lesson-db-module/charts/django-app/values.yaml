@@ -8,7 +8,7 @@ image:
 service:
   type: LoadBalancer
   port: 8081
-  targetport: 8081
+  targetPort: 8081
 
 config:
     POSTGRES_HOST: automatic_set_by_aurora
