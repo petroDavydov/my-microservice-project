@@ -2,7 +2,7 @@
 
 image:
   repository: 768405431530.dkr.ecr.eu-west-1.amazonaws.com/lesson-db-module
-  tag: v1.0.7
+  tag: v1.0.8
   pullPolicy: IfNotPresent
 
 service:
