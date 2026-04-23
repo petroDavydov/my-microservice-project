@@ -25,3 +25,5 @@
 ##### Всі данні та пояснення відносно роботи №8 у файлі README_jenkins.md у гілці lesson-8, папці lesson-8
 
 ##### Всі данні та пояснення відносно роботи №8-9 у файлі README_jenkins_argo_cd.md у гілці lesson-8-9, папці lesson-8-9
+
+##### Всі данні та пояснення відносно роботи lesson-db-module у файлі README_lesson-db-module.md у гілці lesson-db-module, папці lesson-8-9
