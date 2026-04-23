@@ -198,3 +198,7 @@ Thumbs.db
 htmlcov/
 .tox/
 .pytest_cache/
+
+
+# global-bundle.pem
+global-bundle.pem
