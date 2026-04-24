@@ -144,3 +144,9 @@ module "rds" {
     Project     = "myapp"
   }
 } 
+
+# -- Monitoring --
+
+module "monitoring" {
+  source = "./modules/monitoring"
+}

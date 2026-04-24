@@ -22,4 +22,4 @@ ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
 EXPOSE 8081
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8081"]

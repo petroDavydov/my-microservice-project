@@ -1,27 +1,14 @@
-<!-- final/README_jenkins_argo_cd.md -->
-# HomeWork 10: Jenkins && Argo CD && Aurora/RDS && Django
+<!-- final/README_final.md -->
+# FINAL HomeWork: Jenkins && Argo CD && Aurora/RDS && Django && MONITORING (PROMETHEUS + GRAFANA)
 
 ### СТРУКТУРА ПРОЕКТУ ТА КОМАНДИ ЯКІ БУЛИ ВИКОРИСТАНІ В ДАНІЙ РОБОТІ
 ##### *декотрі файли з'являються після розгортання terraform та виконання певних команд*
 
 
 ```python
-tree
+/my-microservice-project/final$ tree
 .
-├── Jenkinsfile
-├── README_lesson-db-module.md
-├── backend.tf
-├── charts
-│   ├── django-app
-│   │   ├── Chart.yaml
-│   │   ├── templates
-│   │   │   ├── configmap.yaml
-│   │   │   ├── deployment.yaml
-│   │   │   ├── hpa.yaml
-│   │   │   └── service.yaml
-│   │   └── values.yaml
-│   └── info.txt
-├── docker
+├── Django
 │   ├── django
 │   │   ├── Dockerfile
 │   │   ├── goit
@@ -33,10 +20,20 @@ tree
 │   │   ├── manage.py
 │   │   └── requirements.txt
 │   ├── docker-compose.yaml
-│   ├── env.txt
 │   └── nginx
 │       └── default.conf
-├── global-bundle.pem - створюється при підключенні до бази даних
+├── Jenkinsfile
+├── README_final.md
+├── backend.tf
+├── charts
+│   └── django-app
+│       ├── Chart.yaml
+│       ├── templates
+│       │   ├── configmap.yaml
+│       │   ├── deployment.yaml
+│       │   ├── hpa.yaml
+│       │   └── service.yaml
+│       └── values.yaml
 ├── main.tf
 ├── modules
 │   ├── argo_cd
@@ -48,7 +45,6 @@ tree
 │   │   │   │   └── repository.yaml
 │   │   │   └── values.yaml
 │   │   ├── helm_release_django.tf
-│   │   ├── jenkins.tf
 │   │   ├── outputs.tf
 │   │   ├── providers.tf
 │   │   ├── values.yaml
@@ -69,6 +65,10 @@ tree
 │   │   ├── providers.tf
 │   │   ├── values.yaml
 │   │   └── variables.tf
+│   ├── monitoring
+│   │   ├── grafana.tf
+│   │   ├── outputs.tf
+│   │   └── prometheus.tf
 │   ├── rds
 │   │   ├── aurora.tf
 │   │   ├── outputs.tf
@@ -85,14 +85,48 @@ tree
 │       ├── routes.tf
 │       ├── variables.tf
 │       └── vpc.tf
-├── outputs.tf
-├── screenshot
-├── terraform.tfstate
-├── terraform.tfstate.backup
-└── tfplan
+└── outputs.tf
 
-19 directories, 64 files
+19 directories, 60 files
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 1. Ініціалізація Terraform та створення ресурсів
