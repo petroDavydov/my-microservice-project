@@ -1,5 +1,5 @@
 # DevOps CICD
 
-## RDS (K8s)
+## FINAL (K8s)
 
-##### Всі данні та пояснення відносно роботи "lesson-db-module" у файлі README_lesson-db-module.md у гілці lesson-db-module, папці lesson-db-module
+##### Всі данні та пояснення відносно роботи "final" у файлі README_final.md у гілці final, папці final
