@@ -1,4 +1,4 @@
-# lesson-db-module/modules/rds/outputs.tf
+# final/modules/rds/outputs.tf
 
 output "aurora_endpoint" {
   value = try(aws_rds_cluster.aurora[0].endpoint, "")

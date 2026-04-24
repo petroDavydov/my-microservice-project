@@ -1,4 +1,4 @@
-# lesson-db-module/modules/rds/aurora.tf
+# final/modules/rds/aurora.tf
 
 # Aurora Cluster
 resource "aws_rds_cluster" "aurora" {

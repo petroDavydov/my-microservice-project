@@ -1,4 +1,4 @@
-# lesson-db-module/docker/django/Dockerfile
+# final/docker/django/Dockerfile
 
 FROM python:3.10-slim
 

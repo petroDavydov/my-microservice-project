@@ -1,4 +1,4 @@
-# lesson-db-module/modules/argo_cd/values.yaml
+# final/modules/argo_cd/values.yaml
 
 server:
   service:

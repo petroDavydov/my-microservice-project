@@ -1,4 +1,4 @@
-# lesson-db-module/modules/jenkins/values.yaml
+# final/modules/jenkins/values.yaml
 
 # Default values for the Jenkins Helm chart
 
@@ -99,7 +99,7 @@ controller:
                       url('https://github.com/petroDavydov/my-microservice-project.git')
                       credentials('github-token')
                     }
-                    branches('*/lesson-db-module')
+                    branches('*/final')
                   }
                 }
                 steps {
@@ -114,7 +114,7 @@ controller:
                                   url("https://github.com/petroDavydov/my-microservice-project.git")
                                   credentials("github-token")
                                 }
-                                branches("*/lesson-db-module")
+                                branches("*/final")
                               }
                             }
                           }

@@ -1,4 +1,4 @@
-# lesson-db-module/modules/ecr/ecr.tf
+# final/modules/ecr/ecr.tf
 
 # data-ресурс для отримання account_id
 data "aws_caller_identity" "current" {}
@@ -12,7 +12,7 @@ resource "aws_ecr_repository" "my_ecr_repo_lesson_db_module" {
 
     tags = {
       Name = var.ecr_name
-      Environment = "lesson-db-module"
+      Environment = "final"
     }
   
 }

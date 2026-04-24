@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# lesson-db-module/docker/django/manage.py
+# final/docker/django/manage.py
 """Django's command-line utility for administrative tasks."""
 import os
 import sys

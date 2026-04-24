@@ -1,4 +1,4 @@
-# lesson-db-module/modules/ecr/variables.tf
+# final/modules/ecr/variables.tf
 
 variable "ecr_name" {
   description = "Name of ECR repository"

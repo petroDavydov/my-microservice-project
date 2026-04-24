@@ -1,4 +1,4 @@
-# lesson-db-module/modules/argo_cd/variables.tf
+# final/modules/argo_cd/variables.tf
 
 variable "name" {
   description = "Назва Helm-релізу"

@@ -1,4 +1,4 @@
-# lesson-db-module/charts/django-app/Chart.yaml
+# final/charts/django-app/Chart.yaml
 
 apiVersion: v2
 name: django-app

@@ -1,4 +1,4 @@
-<!-- lesson-8-9/README_jenkins_argo_cd.md -->
+<!-- final/README_jenkins_argo_cd.md -->
 # HomeWork 10: Jenkins && Argo CD && Aurora/RDS && Django
 
 ### СТРУКТУРА ПРОЕКТУ ТА КОМАНДИ ЯКІ БУЛИ ВИКОРИСТАНІ В ДАНІЙ РОБОТІ

@@ -1,4 +1,4 @@
-# lesson-db-module/modules/argo_cd/outputs.tf
+# final/modules/argo_cd/outputs.tf
 
 output "argo_cd_server_service" {
   description = "Argo CD server service"

@@ -1,4 +1,4 @@
-# lesson-db-module/modules/s3-backend/outputs.tf
+# final/modules/s3-backend/outputs.tf
 
 output "s3_bucket_name" {
   description = "Назва S3-бакета для стейтів"

@@ -1,4 +1,4 @@
-# lesson-db-module/charts/django-app/templates/hpa.yaml
+# final/charts/django-app/templates/hpa.yaml
 
 
 {{- if .Values.autoscaling.enabled }}

@@ -1,4 +1,4 @@
-# lesson-db-module/modules/rds/rds.tf
+# final/modules/rds/rds.tf
 
 # Standard RDS Instance
 resource "aws_db_instance" "standard" {

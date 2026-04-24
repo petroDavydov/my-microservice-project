@@ -1,4 +1,4 @@
-# # lesson-db-module/modules/argo_cd/helm_release_django.tf
+# # final/modules/argo_cd/helm_release_django.tf
 
 # resource "helm_release" "django" {
 #   name       = "django-app"

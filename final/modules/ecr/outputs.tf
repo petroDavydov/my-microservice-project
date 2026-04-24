@@ -1,4 +1,4 @@
-# lesson-db-module/modules/ecr/outputs.tf
+# final/modules/ecr/outputs.tf
 
 output "repository_url" {
     description = "URL of the ECR repository for Docker images"

@@ -1,4 +1,4 @@
-# lesson-db-module/modules/rds/shared.tf
+# final/modules/rds/shared.tf
 
 # Subnet group (used by both)
 resource "aws_db_subnet_group" "default" {

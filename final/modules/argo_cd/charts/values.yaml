@@ -1,4 +1,4 @@
-# lesson-db-module/modules/argo_cd/charts/values.yaml
+# final/modules/argo_cd/charts/values.yaml
 
 applications:
   - name: django-app
@@ -6,8 +6,8 @@ applications:
     project: default
     source:
       repoURL: https://github.com/petroDavydov/my-microservice-project.git
-      path: lesson-db-module/charts/django-app
-      targetRevision: lesson-db-module
+      path: final/charts/django-app
+      targetRevision: final
       helm:
         valueFiles:
           - values.yaml

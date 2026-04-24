@@ -1,4 +1,4 @@
-# lesson-db-module/modules/rds/variables.tf
+# final/modules/rds/variables.tf
 
 variable "name" {
   description = "Назва інстансу або кластера"

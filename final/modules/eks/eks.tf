@@ -1,4 +1,4 @@
-# lesson-db-module/modules/eks/eks.tf
+# final/modules/eks/eks.tf
 
 # IAM-роль для EKS-кластера
 resource "aws_iam_role" "eks" {

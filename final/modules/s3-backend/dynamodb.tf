@@ -1,4 +1,4 @@
-# lesson-db-module/modules/s3-backend/dynamodb.tf
+# final/modules/s3-backend/dynamodb.tf
 
 # Створюємо DynamoDB-таблицю для блокування стейтів
 resource "aws_dynamodb_table" "terraform_locks" {
@@ -13,7 +13,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
 
   tags = {     # теги для ідентифікації
     Name        = "Terraform Lock Table"
-    Environment = "lesson-db-module"
+    Environment = "final"
   }
 }
 

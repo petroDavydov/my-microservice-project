@@ -1,11 +1,11 @@
-# lesson-db-module/modules/vpc/routes.tf
+# final/modules/vpc/routes.tf
 
  # Створюємо маршрутну таблицю для публічних підмереж
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id  # Прив'язуємо таблицю до нашої VPC
 
   tags = {
-    Name = "${var.vpc_name}-lesson-db-module-public-rt" # Тег для таблиці маршрутів
+    Name = "${var.vpc_name}-public-rt" # Тег для таблиці маршрутів
   }
 }
 

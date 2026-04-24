@@ -1,4 +1,4 @@
-# lesson-db-module/modules/eks/variables.tf
+# final/modules/eks/variables.tf
 
 variable "region" {
   description = "AWS region for deployment"
@@ -7,7 +7,7 @@ variable "region" {
 
 variable "cluster_name" {
   description = "Name of the EKS cluster"
-  default     = "lesson-db-module"
+  default     = "final"
 }
 
 variable "subnet_ids" {
@@ -17,7 +17,7 @@ variable "subnet_ids" {
 
 variable "node_group_name" {
   description = "Name of the node group"
-  default     = "lesson-db-module-node-group"
+  default     = "final-node-group"
 }
 
 variable "instance_type" {

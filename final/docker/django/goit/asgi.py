@@ -1,4 +1,4 @@
-# lesson-db-module/docker/django/goit/asgi.py
+# final/docker/django/goit/asgi.py
 """
 ASGI config for goit project.
 
