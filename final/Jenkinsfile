@@ -45,7 +45,7 @@ spec:
           sh '''
             /kaniko/executor \\
               --context `pwd`/final \\
-              --dockerfile docker/django/Dockerfile \\
+              --dockerfile Django/django/Dockerfile \\
               --destination=$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG \\
               --destination=$ECR_REGISTRY/$IMAGE_NAME:latest \\
               --cache=true \\

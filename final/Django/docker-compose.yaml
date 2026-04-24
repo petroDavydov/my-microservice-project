@@ -1,4 +1,4 @@
-# final/docker/docker-compose.yaml
+# final/Django/docker-compose.yaml
 # version: '3.9' 
 
 services:

@@ -1,4 +1,4 @@
-# final/docker/django/goit/asgi.py
+# final/Django/django/goit/asgi.py
 """
 ASGI config for goit project.
 

@@ -1,4 +1,4 @@
-# final/docker/django/goit/urls.py
+# final/Django/django/goit/urls.py
 """
 URL configuration for goit project.
 

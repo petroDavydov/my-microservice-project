@@ -1,4 +1,4 @@
-# final/docker/django/goit/settings.py
+# final/Django/django/goit/settings.py
 """
 Django settings for goit project.
 

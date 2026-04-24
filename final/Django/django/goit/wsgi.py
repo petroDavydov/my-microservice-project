@@ -1,4 +1,4 @@
-# final/docker/django/goit/wsgi.py
+# final/Django/django/goit/wsgi.py
 """
 WSGI config for goit project.
 

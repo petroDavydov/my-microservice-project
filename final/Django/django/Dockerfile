@@ -1,17 +1,17 @@
-# final/docker/django/Dockerfile
+# final/Django/django/Dockerfile
 
 FROM python:3.10-slim
 
 WORKDIR /app
 
-# Копіюємо requirements.txt з підкаталогу docker/django
-COPY docker/django/requirements.txt .
+# Копіюємо requirements.txt з підкаталогу Django/django
+COPY Django/django/requirements.txt .
 
 # Встановлюємо залежності
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копіюємо увесь код з каталогу lesson-db-module/docker/django
-COPY docker/django/ .
+# Копіюємо увесь код з каталогу lesson-db-module/Django/django
+COPY Django/django/ .
 
 # Налаштовуємо змінні середовища для Postgres
 ENV POSTGRES_HOST=${POSTGRES_HOST}
