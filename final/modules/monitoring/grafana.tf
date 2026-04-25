@@ -9,8 +9,8 @@ resource "helm_release" "grafana" {
   version          = "8.0.0"
 
   set = [ {
-    name  = ""
-    value = ""
+    name  = "postrgres"
+    value = "admin123AWS23"
   },
   
   {
