@@ -90,272 +90,99 @@
 19 directories, 60 files
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1. Ініціалізація Terraform та створення ресурсів
+1. Перевірка Kubernetes кластера
 
 ```bash
-cd lesson-db-module
-
-terraform init
-terraform validate
-terraform plan -out=tfplan
-terraform apply tfplan
-
-```
-
-Remote Backend
-
-```bash
-# Розкоментувати backend.tf
-terraform init -migrate-state
-
-```
-
-
-2. Підключення до EKS
-
-```bash
-aws eks update-kubeconfig --region <region> --name <claster_name>
-kubectl config current-context
+# Ноди
 kubectl get nodes -o wide
+
+# Поди у default namespace
+kubectl get pods -n default -o wide
+
+# Сервіси
+kubectl get svc -n default
+
+# Horizontal Pod Autoscaler
+kubectl get hpa -n default
 ```
 
+2. Django (питання в процесі вирішення)
+
+```bash
+# Логи Django
+kubectl logs -f deploy/django-app-django -n default
+
+# Перевірка доступності сервісу зсередини кластера
+kubectl run tmp-shell --rm -it --image=alpine -- sh
+apk add curl
+curl http://django-app-django.default.svc.cluster.local:80/admin/
+```
 
 3. Jenkins
 
 ```bash
-terraform apply -target=module.jenkins
-kubectl get pods -n jenkins
+# Поди Jenkins
+kubectl get pods -n default | grep jenkins
+
+# Логи Jenkins
+kubectl logs -f deploy/jenkins -n default
+
+# Сервіс Jenkins
+kubectl get svc jenkins -n default
 ```
 
 4. Argo CD
 
 ```bash
-terraform apply -target=module.argo_cd
+# Поди Argo CD
+kubectl get pods -n default | grep argo
 
-kubectl get pods -n argocd
-kubectl get svc -n argocd
-
-# LoadBalancer URL Argo CD
-kubectl get svc -n argocd argo-cd-argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
-
-kubectl get applications -n argocd
-
+# Сервіс Argo CD
+kubectl get svc argo-cd -n default
 ```
 
-
-5. Django
+5. RDS / Aurora
 
 ```bash
-helm upgrade --install django-app ./charts/django-app -n default
-kubectl get pods -n default
-kubectl logs -n default -l app=django-app-django
-
-kubectl get svc -n default
-
-# LoadBalancer URL Django
-kubectl get svc -n default django-app-django -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
-
+# Перевірка доступності БД з пода
+kubectl run psql-client --rm -it --image=postgres:15 -- bash
+psql -h myapp-db-cluster.cluster-cpoe6ggcw873.eu-west-1.rds.amazonaws.com -U django_user -d django_db
 ```
 
-6. Підключення та міграції бази
+6. Моніторинг (Prometheus + Grafana)
 
 ```bash
-# створюється global-bundle.pem
-curl -o global-bundle.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+# Поди Prometheus та Grafana
+kubectl get pods -n default | grep prometheus
+kubectl get pods -n default | grep grafana
 
-export RDSHOST="myapp-db-cluster.cluster-cpoe6ggcw873.eu-west-1.rds.amazonaws.com" 
-psql "host=$RDSHOST port=5432 dbname=myapp user=postgres sslmode=verify-full sslrootcert=./global-bundle.pem"
+# Сервіси Prometheus та Grafana
+kubectl get svc prometheus -n default
+kubectl get svc grafana -n default
 
-# міграція у кластері
-kubectl exec -it <django-pod> -n default -- python manage.py migrate
+# Перевірка доступності зсередини кластера (не завжди спрацьовувала)
+kubectl run tmp-shell --rm -it --image=alpine -- sh
+apk add curl
+curl http://prometheus.default.svc.cluster.local:9090/-/ready
+curl http://grafana.default.svc.cluster.local:3000/login
 ```
-
-
-7. Створення суперкористувача
-
-```bash
-kubectl exec -it <django-pod> -n default -- python manage.py createsuperuser
-```
-
-8. Перевірка доступності
-
-```bash
-kubectl get svc django-app-django -n default
-curl -I http://<ELB_DNS>/admin/
-```
-
-9. Перевірка кластера та ресурсів
-
-```bash
-kubectl config get-contexts
-kubectl config current-context
-kubectl get nodes
-
-kubectl get pods -n default
-kubectl describe pod <pod_name> -n default
-kubectl logs <pod_name> -n default
-
-kubectl get deployments -n default
-kubectl describe deployment django-app-django -n default
-kubectl get rs -n default
-
-kubectl get svc -n default
-kubectl describe svc django-app-django -n default
-
-kubectl get ingress -n default
-kubectl describe ingress -n default
-```
-
-10. Моніторинг та стан - при наявності встановлення
-
-```bash
-kubectl top pods -n default
-kubectl top nodes
-
-kubectl get events -n default --sort-by=.metadata.creationTimestamp
-
-kubectl get configmap -n default
-kubectl describe configmap <configmap_name> -n default
-
-kubectl get secrets -n default
-kubectl describe secret <secret_name> -n default
-```
-
-11. Візуалізація графа залежностей (у роботі збережено файл graph.png)
-
-```bash
-terraform graph | dot -Tpng > graph.png
-```
-
-
-12. Cleanup
-
-```bash
-helm uninstall jenkins -n jenkins --ignore-not-found
-helm uninstall argo-cd -n argocd --ignore-not-found
-
-
-
-*закоментуваити helm_release_django.tf 
-terraform destroy -lock=false
-
-aws ecr delete-repository \
-  --repository-name lesson-db-module \
-  --region eu-west-1 --force
-```
-
 
 ### Скріншоти
 
+![argo](/final/scrinshots/argo.png)
 
 
-![argocd](/lesson-db-module/screenshot/argocd.png)
+![jenkins](/final/scrinshots/Jenkins.png)
 
 
-![jnkins](/lesson-db-module/screenshot/jenkins.png)
+![monitoring](/final/scrinshots/prometheus.png)
 
 
-![django](/lesson-db-module/screenshot/django.png)
+![django](/final/scrinshots/dashboard.png)
 
 
-![db_1](/lesson-db-module/screenshot/db_1.png)
 
-
-![db_2](/lesson-db-module/screenshot/db_2.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#####  *На даному етапі продовжується питання яке потребує вирішення, що до Джанго.
 
 
 
