@@ -21,6 +21,8 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
+
+
 # Override files (локальні налаштування, які не мають бути у репо)
 override.tf
 override.tf.json
@@ -74,6 +76,7 @@ kubectl-output.log
 *.txt
 
 !requirements.txt
+!info_terraform.txt
 
 # Match only directories named mydir
 mydir/
