@@ -2,7 +2,7 @@
 
 image:
   repository: 768405431530.dkr.ecr.eu-west-1.amazonaws.com/final
-  tag: v1.0.2
+  tag: v1.0.4
   pullPolicy: IfNotPresent
 
 service:
