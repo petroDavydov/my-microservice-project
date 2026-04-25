@@ -38,8 +38,8 @@
 
 controller:
   admin:
-    username: # your username(admin)
-    password: # your password(if not default, then yours)
+    username: 
+    password: 
 
   serviceType: LoadBalancer
   servicePort: 80
@@ -117,6 +117,7 @@ controller:
                                 branches("*/final")
                               }
                             }
+                            scriptPath('lesson-db-module/Jenkinsfile')
                           }
                         }
                       }
