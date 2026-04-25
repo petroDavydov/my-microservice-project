@@ -15,3 +15,13 @@ output "rds_endpoint" {
 output "db_name" {
   value = var.db_name
 }
+
+
+output "db_user" {
+  value = var.username
+}
+
+output "db_password" {
+  value = var.password
+  sensitive = true
+}

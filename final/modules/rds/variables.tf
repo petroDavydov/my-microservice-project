@@ -104,3 +104,14 @@ variable "parameter_group_family_rds" {
   type    = string
   default = "postgres15"
 }
+
+# variable "username" {
+#   description = "Master username for RDS"
+#   type        = string
+# }
+
+# variable "password" {
+#   description = "Master password for RDS"
+#   type        = string
+#   sensitive   = true
+# }

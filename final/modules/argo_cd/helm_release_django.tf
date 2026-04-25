@@ -2,8 +2,10 @@
 
 resource "helm_release" "django" {
   name       = "django-app"
-  chart      = "${path.module}/../charts/django-app"
+  chart      = "${path.root}/charts/django-app"
   namespace  = "default"
+
+   values = [file("${path.root}/charts/django-app/values.yaml")]
 
   set = [
     {

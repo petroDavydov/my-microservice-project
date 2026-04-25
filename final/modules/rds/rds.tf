@@ -39,3 +39,5 @@ resource "aws_db_parameter_group" "standard" {
 
   tags = var.tags
 }
+
+

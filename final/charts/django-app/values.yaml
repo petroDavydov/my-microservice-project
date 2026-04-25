@@ -11,11 +11,11 @@ service:
   targetPort: 8081
 
 config:
-    POSTGRES_HOST: ""
-    POSTGRES_PORT: ""
-    POSTGRES_USER: ""
-    POSTGRES_DB: ""
-    POSTGRES_PASSWORD: ""
+    POSTGRES_HOST: myapp-db-cluster.cluster-cpoe6ggcw873.eu-west-1.rds.amazonaws.com
+    POSTGRES_PORT: "5432"
+    POSTGRES_USER: django_user
+    POSTGRES_DB: django_db
+    POSTGRES_PASSWORD: pass9764gd
 
 autoscaling:
   enabled: true

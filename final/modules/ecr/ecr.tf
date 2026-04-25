@@ -3,8 +3,9 @@
 # data-ресурс для отримання account_id
 data "aws_caller_identity" "current" {}
 
-resource "aws_ecr_repository" "my_ecr_repo_lesson_db_module" {
+resource "aws_ecr_repository" "my_ecr_repo_final" {
     name                 = var.ecr_name
+    force_delete = true
     
     image_scanning_configuration {
       scan_on_push = var.scan_on_push
@@ -18,8 +19,8 @@ resource "aws_ecr_repository" "my_ecr_repo_lesson_db_module" {
 }
 
 
-resource "aws_ecr_repository_policy" "my_ecr_repo_lesson_db_module" {
-    repository = aws_ecr_repository.my_ecr_repo_lesson_db_module.name
+resource "aws_ecr_repository_policy" "my_ecr_repo_final" {
+    repository = aws_ecr_repository.my_ecr_repo_final.name
 
     policy = jsonencode({
         Version = "2012-10-17"
