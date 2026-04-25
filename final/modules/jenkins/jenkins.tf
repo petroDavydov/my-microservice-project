@@ -1,19 +1,5 @@
 # final/modules/jenkins/jenkins.tf
 
-# resource "helm_release" "jenkins" {
-#   name             = "jenkins"
-#   namespace        = "jenkins"
-#   repository       = "https://charts.jenkins.io"
-#   chart            = "jenkins"
-#   version          = "5.0.16"
-#   create_namespace = true
-
-#   values = [
-#     file("${path.module}/values.yaml")
-#   ]
-# }
-# -------------------------2 step CI --
-
 resource "kubernetes_storage_class_v1" "ebs_sc" {
   metadata {
     name = "ebs-sc"
@@ -103,6 +89,24 @@ resource "helm_release" "jenkins" {
 
   values = [
     file("${path.module}/values.yaml")
+  ]
+
+  set = [
+    {
+      name  = "controller.admin.username"
+      value = var.jenkins_admin_user
+    }
+  ]
+
+  set_sensitive = [
+    {
+      name  = "controller.admin.password"
+      value = var.jenkins_admin_password
+    },
+    {
+      name  = "controller.JCasC.configScripts.credentials.system.domainCredentials[0].credentials[0].usernamePassword.password"
+      value = var.github_pat
+    }
   ]
 
 }

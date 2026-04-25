@@ -88,6 +88,10 @@ module "jenkins" {
     kubernetes = kubernetes
   }
 
+  github_pat = var.github_pat
+  jenkins_admin_user = var.jenkins_admin_user
+  jenkins_admin_password = var.jenkins_admin_password
+
   # Додано по рекомендації ШІ
   oidc_provider_url = module.eks.oidc_provider_url
   oidc_provider_arn = module.eks.oidc_provider_arn
@@ -100,7 +104,16 @@ module "argo_cd" {
   source       = "./modules/argo_cd"
   namespace    = "argocd"
   chart_version = "5.46.4"
+
+  db_host     = module.rds.aurora_endpoint
+  db_name     = module.rds.db_name
+  db_user     = module.rds.db_user
+  db_password = module.rds.db_password
+
+  django_image_repository = var.django_image_repository
 }
+
+
 
 
 # ПІДКЛЮЧАЄМО RDS
@@ -126,8 +139,8 @@ module "rds" {
   instance_class             = "db.t3.medium"
   allocated_storage          = 20
   db_name                    = "myapp"
-  username                   = "postgres"
-  password                   = "admin123AWS23"                      # <-- enter the password 
+  username                   = var.rds_username
+  password                   = var.rds_password
   subnet_private_ids         = module.vpc.private_subnets
   subnet_public_ids          = module.vpc.public_subnets
   publicly_accessible        = true
@@ -149,4 +162,6 @@ module "rds" {
 
 module "monitoring" {
   source = "./modules/monitoring"
+
+  grafana_admin_password = var.grafana_admin_password
 }

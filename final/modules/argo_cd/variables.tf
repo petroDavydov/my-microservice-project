@@ -17,3 +17,16 @@ variable "chart_version" {
   type        = string
   default     = "5.46.4" 
 }
+
+
+variable "db_host" {}
+variable "db_name" {}
+variable "db_user" {}
+variable "db_password" {
+  sensitive = true
+}
+
+variable "django_image_repository" {
+  description = "ECR repository for Django app"
+  type        = string
+}

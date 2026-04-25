@@ -22,3 +22,19 @@ variable "oidc_provider_url" {
   type = string
 }
 # ---
+variable "github_pat" {
+  description = "GitHub Personal Access Token"
+  type        = string
+  sensitive   = true
+}
+
+variable "jenkins_admin_user" {
+  description = "Jenkins admin username"
+  type        = string
+}
+
+variable "jenkins_admin_password" {
+  description = "Jenkins admin password"
+  type        = string
+  sensitive   = true
+}

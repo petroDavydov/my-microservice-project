@@ -18,13 +18,3 @@ applications:
       automated:
         prune: true
         selfHeal: true
-
-# repositories:
-#   - name: example-app
-#     url:  https://github.com/petroDavydov/my-microservice-project.git
-#     # username: petroDavydov
-#     # password: YOUR_PASS
-
-# repoConfig:
-#   insecure: "true"
-#   enableLfs: "true"

@@ -8,11 +8,7 @@ resource "helm_release" "grafana" {
   create_namespace = true
   version          = "8.0.0"
 
-  set = [ {
-    name  = "postrgres"
-    value = "admin123AWS23"
-  },
-  
+  set = [  
   {
     name  = "service.type"
     value = "LoadBalancer"
@@ -21,5 +17,12 @@ resource "helm_release" "grafana" {
     name  = "service.port"
     value = "3000"
   }
+  ]
+
+  set_sensitive = [
+    {
+      name  = "adminPassword"
+      value = var.grafana_admin_password
+    }
   ]
 }
